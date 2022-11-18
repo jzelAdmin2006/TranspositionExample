@@ -13,7 +13,24 @@ public class FenceCryptography implements Encryption {
     this.cipher = calculateCipher();
   }
 
-  public void validateKey(int key) {
+  public FenceCryptography(int key, String cipher) {
+    validateKey(key);
+    this.key = key;
+    this.cipher = cipher;
+    plainText = calculatePlainText();
+  }
+
+  @Override
+  public String getPlainText() {
+    return plainText;
+  }
+
+  @Override
+  public String getCipher() {
+    return cipher;
+  }
+
+  private void validateKey(int key) {
     if (key <= 1) {
       throw new IllegalArgumentException(
           String.format("The encryption key %s is invalid. This encryption key must have a value of at least 2.", key));
@@ -23,18 +40,6 @@ public class FenceCryptography implements Encryption {
   private String calculateCipher() {
     char[][] fence = createFence(plainText);
     return assembleCipher(fence);
-  }
-
-  private String assembleCipher(char[][] fence) {
-    String cipher = "";
-    for (char[] row : fence) {
-      for (char character : row) {
-        if (character != Character.UNASSIGNED) {
-          cipher += character;
-        }
-      }
-    }
-    return cipher;
   }
 
   private char[][] createFence(String text) {
@@ -51,10 +56,6 @@ public class FenceCryptography implements Encryption {
     return fence;
   }
 
-  boolean fencePlankIsFacingDown(int rowIndex, int charIndex, char[][] fence) {
-    return rowIndex == 0 || fence[rowIndex - 1][charIndex - 1] != Character.UNASSIGNED && rowIndex + 1 < key;
-  }
-
   private char[][] createEmptyFence(String text) {
     char[][] fence = new char[key][];
     for (int i = 0; i < fence.length; i++) {
@@ -63,25 +64,20 @@ public class FenceCryptography implements Encryption {
     return fence;
   }
 
-  public FenceCryptography(int key, String cipher) {
-    validateKey(key);
-    this.key = key;
-    this.cipher = cipher;
-    plainText = calculatePlainText();
+  private boolean fencePlankIsFacingDown(int rowIndex, int charIndex, char[][] fence) {
+    return rowIndex == 0 || fence[rowIndex - 1][charIndex - 1] != Character.UNASSIGNED && rowIndex + 1 < key;
   }
 
-  private String assemblePlainText(char[][] fence) {
-    String plainText = "";
-    int rowIndex = 0;
-    for (int charIndex = 0; charIndex < cipher.length(); charIndex++) {
-      plainText += fence[rowIndex][charIndex];
-      if (fencePlankIsFacingDown(rowIndex, charIndex, fence)) {
-        rowIndex++;
-      } else {
-        rowIndex--;
+  private String assembleCipher(char[][] fence) {
+    String cipher = "";
+    for (char[] row : fence) {
+      for (char character : row) {
+        if (character != Character.UNASSIGNED) {
+          cipher += character;
+        }
       }
     }
-    return plainText;
+    return cipher;
   }
 
   private String calculatePlainText() {
@@ -97,13 +93,17 @@ public class FenceCryptography implements Encryption {
     return assemblePlainText(fence);
   }
 
-  @Override
-  public String getPlainText() {
+  private String assemblePlainText(char[][] fence) {
+    String plainText = "";
+    int rowIndex = 0;
+    for (int charIndex = 0; charIndex < cipher.length(); charIndex++) {
+      plainText += fence[rowIndex][charIndex];
+      if (fencePlankIsFacingDown(rowIndex, charIndex, fence)) {
+        rowIndex++;
+      } else {
+        rowIndex--;
+      }
+    }
     return plainText;
-  }
-
-  @Override
-  public String getCipher() {
-    return cipher;
   }
 }
