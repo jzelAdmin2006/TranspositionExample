@@ -17,6 +17,22 @@ public class MatrixTransposition implements Encryption {
     this.cipher = calculateCipher();
   }
 
+  public MatrixTransposition(long key, String cipher) {
+    this.key = convertKey(key);
+    this.cipher = cipher;
+    this.plainText = calculatePlainText();
+  }
+
+  @Override
+  public String getPlainText() {
+    return plainText;
+  }
+
+  @Override
+  public String getCipher() {
+    return cipher;
+  }
+
   private void validatePlainText(String plainText) {
     if (plainText.contains(String.valueOf(EMPY_MATRIX_PLACE_SUBSTITUTE))) {
       throw new IllegalArgumentException(String.format(
@@ -65,6 +81,18 @@ public class MatrixTransposition implements Encryption {
     return matrix;
   }
 
+  private char[][] createEmptyMatrix(int keyLength, int numberOfRows) {
+    char[][] matrix = new char[numberOfRows][];
+    for (int i = 0; i < matrix.length; i++) {
+      matrix[i] = new char[keyLength];
+    }
+    return matrix;
+  }
+
+  private int getPlainTextIndex(int keyLength, int rowIndex, int columnIndex) {
+    return columnIndex + keyLength * rowIndex;
+  }
+
   private String assembleCipher(char[][] matrix) {
     String cipher = "";
     for (int columnIndex = 0; columnIndex < key.length(); columnIndex++) {
@@ -78,24 +106,6 @@ public class MatrixTransposition implements Encryption {
       }
     }
     return cipher;
-  }
-
-  private char[][] createEmptyMatrix(int keyLength, int numberOfRows) {
-    char[][] matrix = new char[numberOfRows][];
-    for (int i = 0; i < matrix.length; i++) {
-      matrix[i] = new char[keyLength];
-    }
-    return matrix;
-  }
-
-  int getPlainTextIndex(int keyLength, int rowIndex, int columnIndex) {
-    return columnIndex + keyLength * rowIndex;
-  }
-
-  public MatrixTransposition(long key, String cipher) {
-    this.key = convertKey(key);
-    this.cipher = cipher;
-    this.plainText = calculatePlainText();
   }
 
   private String calculatePlainText() {
@@ -127,15 +137,5 @@ public class MatrixTransposition implements Encryption {
       }
     }
     return plainText;
-  }
-
-  @Override
-  public String getPlainText() {
-    return plainText;
-  }
-
-  @Override
-  public String getCipher() {
-    return cipher;
   }
 }
