@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import tech.bison.trainee2021.userInterface.command.Command;
 import tech.bison.trainee2021.userInterface.command.CommandFactory;
 
 public class UserInterface {
@@ -41,6 +40,16 @@ public class UserInterface {
     }
     String[] splitInput = input.split(String.valueOf(ARGS_DELIMITER));
     String command = splitInput[0];
+    String[] args = extractArgs(input, splitInput);
+    return CommandFactory.create(command).execute(args);
+  }
+
+  private String exit() {
+    isRunning = false;
+    return "Terminating...";
+  }
+
+  private String[] extractArgs(String input, String[] splitInput) {
     List<String> inputParts = new ArrayList<>();
     Collections.addAll(inputParts, splitInput);
     inputParts.remove(0);
@@ -48,12 +57,6 @@ public class UserInterface {
       inputParts.add(String.valueOf(ARGS_DELIMITER));
     }
     String[] args = inputParts.toArray(new String[0]);
-    Command commandExecutor = CommandFactory.create(command);
-    return commandExecutor.execute(args);
-  }
-
-  private String exit() {
-    isRunning = false;
-    return "Terminating...";
+    return args;
   }
 }
