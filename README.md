@@ -6,9 +6,9 @@ geschrieben von Johannes Zeller
 Empfohlene Java-Version: 17.0.5
 
 
-Download Jar: Lorem Ipsum
+Download Jar: https://drive.google.com/uc?id=105AQlf9VF4_VTlDSaD-cjfTg-H27JzT-&export=download
 
-Download Exe: Lorem Ipsum
+Download Exe: https://drive.google.com/uc?id=10-YcFYWpKwDLrTdf9FSKWaCxjLmNr6z-&export=download&confirm=t&uuid=b1460e86-b429-413f-a24d-cdfd41732d01
 
 
 ## Befehle
