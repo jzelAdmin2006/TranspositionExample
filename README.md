@@ -6,22 +6,28 @@ geschrieben von Johannes Zeller
 Empfohlene Java-Version: 17.0.5
 
 
-Download Jar: Lorem Ipsum
+Download Jar: https://drive.google.com/uc?id=105AQlf9VF4_VTlDSaD-cjfTg-H27JzT-&export=download
 
-Download Exe: Lorem Ipsum
+Download Exe: https://drive.google.com/uc?id=10-YcFYWpKwDLrTdf9FSKWaCxjLmNr6z-&export=download&confirm=t&uuid=b1460e86-b429-413f-a24d-cdfd41732d01
 
 
 ## Befehle
-Lorem Ipsum
+- /encrypt {encryptionMethod} {encryptionKey} {stringToEncrypt}
+- /decrypt {encryptionMethod} {decryptionKey} {stringToDecrypt}
+- /exit
 
 ## Beispiel Verschlüsselung Zaunmethode
-Lorem Ipsum
+- Input = "/encrypt FenceCryptography 20 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+- Output = "Lroaou prn rtam gaeedeialmtitnmi cp c qieidieupssodrasncmio.uoisdlmcnuuo  gindd, et ote  tleloueomidt rat  e  ,dlrst eaoisb"
 
 ## Beispiel Entschlüsselung Zaunmethode
-Lorem Ipsum
+- Input = "/decrypt FenceCryptography 20 Lroaou prn rtam gaeedeialmtitnmi cp c qieidieupssodrasncmio.uoisdlmcnuuo  gindd, et ote  tleloueomidt rat  e  ,dlrst eaoisb"
+- Output = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 
 ## Beispiel Verschlüsselung Matrixmethode
-Lorem Ipsum
+- Input = "/encrypt MatrixTransposition 76134205 LoremIpsumDolorSitAmet,ConsecteturAdipiscingElit,SedDoEiusmodTemporIncididuntUtLaboreEtDoloreMagnaAliqua."
+- Output = "pr,eiiEeittau rDAsAnemruooA IottploTcUEMq eomedgdoInrrl mleciEDdnteei sSCtstimdLDga omtnriSsodbla Luiouc,upiaon."
 
 ## Beispiel Entschlüsselung Matrixmethode
-Lorem Ipsum
+- Input = "/decrypt MatrixTransposition 76134205 pr,eiiEeittau rDAsAnemruooA IottploTcUEMq eomedgdoInrrl mleciEDdnteei sSCtstimdLDga omtnriSsodbla Luiouc,upiaon."
+- Output = "LoremIpsumDolorSitAmet,ConsecteturAdipiscingElit,SedDoEiusmodTemporIncididuntUtLaboreEtDoloreMagnaAliqua."
