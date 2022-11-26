@@ -31,3 +31,8 @@ Download Exe: https://drive.google.com/uc?id=10-YcFYWpKwDLrTdf9FSKWaCxjLmNr6z-&e
 ## Beispiel Entschlüsselung Matrixmethode
 - Input = "/decrypt MatrixTransposition 76134205 pr,eiiEeittau rDAsAnemruooA IottploTcUEMq eomedgdoInrrl mleciEDdnteei sSCtstimdLDga omtnriSsodbla Luiouc,upiaon."
 - Output = "LoremIpsumDolorSitAmet,ConsecteturAdipiscingElit,SedDoEiusmodTemporIncididuntUtLaboreEtDoloreMagnaAliqua."
+
+## Zusätzliche Infos
+- Bei der Matrixtransposition werden Schlüssel ohne eine 0 so interpretiert, dass eine 0 am Anfang ist.
+- Bei der Matrixtransposition darf kein Abstand verwendet werden, da diese als Platzhalter für leere Felder in der Matrix gelten.
+- Z.B. bezüglich dem Exe funktionieren evtl. manche Sonderzeichen nicht korrekt. Das liegt allerdings am Windows CMD und nicht am Code, beispielsweise in der Eclipse IDE funktioniert das Ganze.
